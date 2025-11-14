@@ -1,16 +1,3 @@
 [
-  {
-    "nombre": "Mirsha",
-    "telefono": "+525533410708",
-    "fecha": "2025-11-12T03:51:53.110Z"
-  },
-  {
-    "guest": "Invitado",
-    "token": null,
-    "attendees": 1,
-    "source": "web",
-    "status": "declined",
-    "createdAt": "2025-11-12T04:16:39.798Z",
-    "updatedAt": "2025-11-12T19:23:09.488Z"
-  }
+  
 ]

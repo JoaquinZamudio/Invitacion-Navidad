@@ -1,307 +1,433 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Invitación interactiva — [EMPRESA]</title>
+  <title>Invitación — SAME</title>
   <!-- Tailwind CDN (rápido para prototipo) -->
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+
+  <link rel="stylesheet" href="./dist/output.css">
+
   <style>
     /* Pequeñas mejoras visuales */
-    body{background:linear-gradient(180deg,#f8fafc,#ffffff);}
-    .card{backdrop-filter: blur(4px);} 
+    body {
+      background: linear-gradient(180deg, #f8fafc, #ffffff);
+    }
+
+    .card {
+      backdrop-filter: blur(4px);
+    }
+
+    /* ------------------------------
+   BOTONES MÁGICOS UIVERSE.IO 
+   Adaptados para tus botones
+--------------------------------*/
+    .magic-btn {
+      position: relative;
+      padding: 14px 35px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+      box-shadow: 0 0 0 #ffffff55;
+      border: 2px solid transparent;
+      min-width: 180px;
+    }
+
+
+    .magic-btn:hover {
+      box-shadow: 0 0 20px #ffffffaa;
+      transform: scale(1.03);
+    }
+
+    .magic-btn .star {
+      position: absolute;
+      width: 20px;
+      height: auto;
+      z-index: 0;
+      opacity: 0;
+      transition: 0.8s ease-in-out;
+    }
+
+    .magic-btn:hover .star {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px #fff);
+    }
+
+    /* Posiciones iniciales */
+    .star-1 {
+      top: 40%;
+      left: 20%;
+    }
+
+    .star-2 {
+      top: 10%;
+      left: 60%;
+      width: 12px;
+    }
+
+    .star-3 {
+      top: 70%;
+      left: 40%;
+      width: 8px;
+    }
+
+    .star-4 {
+      top: 30%;
+      left: 80%;
+      width: 10px;
+    }
+
+    .star-5 {
+      top: 50%;
+      left: 10%;
+      width: 14px;
+    }
+
+    /* Hover animado */
+    .magic-btn:hover .star-1 {
+      top: -20%;
+      left: -20%;
+    }
+
+    .magic-btn:hover .star-2 {
+      top: -10%;
+      left: 90%;
+    }
+
+    .magic-btn:hover .star-3 {
+      top: 100%;
+      left: 20%;
+    }
+
+    .magic-btn:hover .star-4 {
+      top: 80%;
+      left: 110%;
+    }
+
+    .magic-btn:hover .star-5 {
+      top: 20%;
+      left: -10%;
+    }
+
+    .fil0 {
+      fill: #fffdef;
+    }
 
 
 
-.boton-ubicacion {
-  display: inline-block;
-  margin-top: 20px;
-  background: #94e3ff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-}
-.boton-ubicacion:hover {
-  background: #ffffff;
-}
+    .boton-ubicacion {
+      display: inline-block;
+      margin-top: 20px;
+      background: #94e3ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.float {
-  animation: float 4s ease-in-out infinite;
-}
+    .boton-ubicacion:hover {
+      background: #ffffff;
 
+      @keyframes float {
 
+        0%,
+        100% {
+          transform: translateY(0);
+        }
 
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .float {
+        animation: float 4s ease-in-out infinite;
+      }
+
+    }
+
+    .max-w-xs {
+      max-width: 25rem !important;
+    }
+
+    .sticker-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3OGc3ajE1YzAwdGNpaHhwNmxzbzhhc2p5cTJxdWUxM25wMGlqdWdsaSZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/p3BntHCurhKpW73NC9/giphy.gif');
+      background-repeat: repeat;
+      background-position: center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 1;
+    }
 
   </style>
 </head>
 
-<body class="h-screen w-screen bg-gradient-to-b from-sky-100 to-white flex items-center justify-center p-0 m-0">
-  <main class="h-full w-full bg-white/70 border border-slate-200 rounded-none shadow-inner p-6 overflow-auto card ">
+<body class=" bg-gradient-to-b from-[#0d2755] to-black  flex items-center justify-center p-0 m-0">
+  <div class="sticker-bg"></div>
+
+  <main class="h-full w-full   rounded-none shadow-inner overflow-auto card ">
     <!-- Header: logo y título -->
-<!-- Encabezado decorativo -->
-<header class="relative w-full h-72 h-screen bg-gradient-to-b from-black to-[#0d2755] overflow-hidden flex justify-center items-center">
-  <!-- Imágenes decorativas flotantes -->
-  <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño" class="absolute top-6 left-10 w-24 drop-shadow-lg float">
+    <!-- Encabezado decorativo -->
+    <header class="relative mb-12 overflow-hidden flex justify-center items-center">
 
-  <img src="https://img.icons8.com/fluency/96/sparkling.png" alt="Regalo navideño" class="absolute top-10 right-12 w-28 opacity-90 float">
-
-  <img src="https://img.icons8.com/fluency/48/christmas-candle.png" alt="Bastón dulce" class="absolute bottom-8 left-1/4 w-20 opacity-80 float">
-
-  <img src="https://img.icons8.com/fluency/96/sparkling.png
-    " alt="Campana" class="absolute top-16 left-1/2 w-24 -translate-x-1/2 float">
-
-  <img src="https://img.icons8.com/fluency/96/candy-cane--v1.png" alt="Copo de nieve" class="absolute bottom-10 right-1/4 w-20 float">
-
-  <!-- Texto o logo central -->
-  <div class="relative z-10 text-center">
-    <h1 class="text-4xl font-bold text-red-700 drop-shadow-sm">✨ Invitación Especial ✨</h1>
-    <p class="text-green-700 mt-2 text-lg">Acompáñanos a celebrar esta Navidad</p>
-  </div>
-</header>
+    </header>
 
 
-    <!-- Area de video -->
-    <section class="mb-4">
-      <!-- Puede ser iframe (YouTube) o un <video> local/mp4 -->
+    <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño"
+      class="absolute top-6 right-10 w-24 drop-shadow-lg float"><!-- Area de video -->
+    <section class="mb-6">
+      <!-- Video para web -->
+      <div class=" bg-black overflow-hidden relative ">
+        <video id="videoDesktop" class="w-full h-full object-cover" autoplay="" playsinline="" preload="auto"
+          controls="">
+          <source src="videoweb.mp4" type="video/mp4">
+          Tu navegador no soporta la etiqueta <code>video</code>.
+        </video>
+      </div>
 
-        <div class="aspect-video bg-black rounded overflow-hidden relative">
-    <video id="inviteVideo"
-           class="w-full h-full object-cover"
-           autoplay
-           muted
-           playsinline
-           preload="auto">
-      <source src="video.mp4" type="video/mp4">
-      Tu navegador no soporta la etiqueta <code>video</code>.
-    </video>
+      <script>
+        const videoDesktop = document.getElementById('videoDesktop');
+        videoDesktop.addEventListener('click', () => {
+          if (videoDesktop.paused) {
+            videoDesktop.play();
+          }
+        });
+      </script>
+    </section>
+
+    <!-- Sección principal de invitación -->
+    <section class="relative w-full h-72 mb-6 p-6 overflow-hidden flex justify-center items-center">
+      <!-- Imágenes decorativas flotantes -->
+      <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño"
+        class="absolute top-6 left-10 w-24 drop-shadow-lg float">
+
+      <img src="https://img.icons8.com/fluency/96/sparkling.png" alt="Regalo navideño"
+        class="absolute top-10 right-12 w-28 opacity-90 float">
+
+      <img src="https://img.icons8.com/fluency/48/christmas-candle.png" alt="Bastón dulce"
+        class="absolute bottom-8 left-20 w-20 opacity-80 float">
+
+      <img src="https://img.icons8.com/fluency/96/christmas-ball.png" alt="Campana"
+        class="absolute top-16 left-1/2 w-12 -translate-x-1/2 float">
+
+      <img src="https://img.icons8.com/fluency/96/candy-cane--v1.png" alt="Copo de nieve"
+        class="absolute bottom-10 right-20 w-20 float">
+
+      <!-- Texto o logo central -->
+      <div class="relative z-10 text-center">
+        <h1 class="text-4xl font-bold text-red-700 drop-shadow-sm">✨ Invitación Especial ✨</h1>
+        <p class="text-green-700 mt-2 text-lg">Acompáñanos a celebrar esta Navidad</p>
+        <p class="text-white mt-2 text-lg">Se requiere vestimenta formal para todos los asistentes.</p>
       </div>
     </section>
 
-    <!-- Botones de respuesta -->
-<section class="mb-4 flex flex-col gap-3">
-      <div class="flex gap-3">
-        <button id="confirmBtn" class="flex-1 py-3 bg-gradient-to-r shadow-lg hover:scale-105 active:scale-95 rounded-lg bg-gradient-to-r from-green-500 to-green-600text-white font-medium hover:bg-green-700">✅ Confirmar asistencia</button>
-        <button id="declineBtn" class="flex-1 py-3 bg-gradient-to-r shadow-lg hover:scale-105 active:scale-95 rounded-lg bg-gradient-to-r bg-gradient-to-r from-red-500 text-black font-medium hover:bg-red-700">❌ No podré asistir</button>
-      </div>
 
-      <!-- Panel de confirmación: aparición modal / inline -->
-      <div id="confirmPanel" class="hidden p-4 border rounded bg-green-50">
-        <label class="block text-sm font-medium mb-2">Confirma tu asistencia (personalizado para <span id="guestNameSpan">Invitado</span>)</label>
-        <div class="flex gap-2 items-center mb-2">
-          <input id="attendeesInput" type="number" min="1" value="1" class="w-24 p-2 border rounded">
-          <span class="text-sm text-slate-600">personas</span><button id="confirmLocalBtn" class="px-4 py-2 rounded border">Confirmar aquí (guardar)</button>
-        </div>
-        <div class="flex gap-2">
-          <button id="sendWhatsappBtn" class="px-4 py-2 rounded bg-sky-600 text-white">Enviar por WhatsApp</button>
-          
-        </div>
-        <p id="confirmNote" class="text-xs text-slate-500 mt-2">Nota: Para que el recuento sea definitivo, el robot de WhatsApp procesará cada confirmación y la mostrará en el resumen de la anfitriona. Este prototipo guarda una versión local como respaldo.</p>
-      </div>
+    <!--botonwhatsapp-->
+    <!-- Formulario -->
+    <section class="mb-4">
+      <h3 class="font-semibold mb-3 text-lg text-center text-white">Confirma tu asistencia</h3>
+      <div class="flex flex-col gap-3 items-center">
+        <input id="nombreInput" type="text" placeholder="Tu nombre" class="w-72 p-2 border rounded text-center"
+          required>
+        <input id="personasInput" type="number" min="1" class="w-72 p-2 border rounded text-center"
+          placeholder="Número de personas">
 
-      <!-- Mensaje cuando declina -->
-      <div id="declinePanel" class="hidden p-4 border rounded bg-red-50">
-        <p class="text-sm">Lamentamos que no puedas asistir. ¿Quieres enviar una nota a la anfitriona?</p>
-        <div class="mt-2 flex gap-2">
-          <button id="sendDeclineWhatsappBtn" class="px-4 py-2 rounded bg-sky-600 text-white">Enviar nota por WhatsApp</button>
-          <button id="declineLocalBtn" class="px-4 py-2 rounded border">Registrar aquí</button>
+        <div class="flex gap-3 w-full px-4">
+
+          <button id="confirmBtn"
+            class="magic-btn w-1/2  bg-green-600 text-white border-green-400 hover:bg-transparent hover:text-green-300 transition">
+
+            ✅ Confirmar asistencia
+
+            <!-- ⭐ Estrellas -->
+            <div class="star star-1">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-2">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-3">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-4">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-5">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+          </button>
+
+
+          <button id="declineBtn"
+            class="magic-btn w-1/2  bg-red-600 text-white border-red-400 hover:bg-transparent hover:text-red-300 transition">
+
+            ❌ No podré asistir
+
+            <!-- ⭐ Estrellas -->
+            <div class="star star-1">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-2">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-3">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-4">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+            <div class="star star-5">
+              <svg viewBox="0 0 191.1 191.1">
+                <path class="fil0"
+                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+              </svg>
+            </div>
+
+          </button>
+
         </div>
       </div>
     </section>
 
     <!-- Ubicación -->
 
-<section class="mb-6 p-4 bg-slate-50 rounded-xl shadow-md">
-  <h3 class="text-lg font-semibold mb-2">📍 Ubicación</h3>
-  
-  <!-- Mapa embebido -->
-  <div class="w-full h-64 mb-3 rounded-lg overflow-hidden shadow-sm">
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.123456789!2d-99.133209!3d19.432608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff1234567890%3A0xabcdef1234567890!2sAv.+Ju%C3%A1rez+123%2C+Ciudad+de+M%C3%A9xico!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx"
-      width="100%"
-      height="100%"
-      style="border:0;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
+    <section class="mb-6 p-6 bg-slate-50 rounded-xl shadow-md">
+      <h3 class="text-lg font-semibold mb-2">📍 Ubicación</h3>
 
-  <!-- Enlace a Google Maps -->
-  <p class="text-sm text-slate-700">
-    ¿Quieres ver la ubicación completa en Maps? 
-    <a href="https://www.google.com/maps/place/Virgen+de+las+Virtudes+Pte.,+La+Guadalupana,+55060+Ecatepec+de+Morelos,+Méx./@19.6204402,-99.0135958,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f1fdebe8cc85:0xee5650664b67c6d!8m2!3d19.6204402!4d-99.0135958!16s%2Fg%2F11h5r_475k!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" 
-       target="_blank" 
-       class="text-sky-600 font-medium hover:underline">
-      Abrir en Maps
-    </a>
-  </p>
-</section>
+      <!-- Mapa embebido: Virgen de las Virtudes, La Guadalupana, Ecatepec -->
+      <div class="w-full h-64 mb-3 rounded-lg overflow-hidden shadow-sm">
+        <iframe
+          src="https://www.google.com/maps?q=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x.&output=embed"
+          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
 
-
-
-
-    <section class="mb-4">
-      <h3 class="font-medium">Ubicación</h3>
-      <p class="text-sm text-slate-600">Dirección: <a id="mapsLink" href="https://www.google.com/maps/place/Virgen+de+las+Virtudes+Pte.,+La+Guadalupana,+55060+Ecatepec+de+Morelos,+Méx./@19.6204402,-99.0135958,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f1fdebe8cc85:0xee5650664b67c6d!8m2!3d19.6204402!4d-99.0135958!16s%2Fg%2F11h5r_475k!17m2!4m1!1e3!18m1!1e1?entry=ttu&g_ep=EgoyMDI1MTEwOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-sky-600 boton-ubicacion underline">Abrir en Maps</a></p>
+      <!-- Enlace a Google Maps -->
+      <p class="text-sm text-slate-700">
+        ¿Quieres ver la ubicación completa en Maps?
+        <a href="https://www.google.com/maps/search/?api=1&query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x."
+          target="_blank" class="text-sky-600 font-medium hover:underline">
+          Abrir en Maps
+        </a>
+      </p>
     </section>
 
-    <!-- Resumen visible (opcional) -->
-    <section class="text-sm text-slate-700 border-t pt-3">
+    <section class="mb-4 p-6">
+      <h3 class="font-medium">Ubicación</h3>
+      <p class="text-sm text-slate-600">Dirección: <a id="mapsLink"
+          href="https://www.google.com/maps/search/?api=1&amp;query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x."
+          target="_blank" class="text-sky-600 boton-ubicacion underline">Abrir en Maps</a></p>
+    </section>
+
+    <!-- Estado -->
+    <section class="text-sm text-slate-700 border-t pt-3 text-center">
       <p>Estado de tu respuesta: <strong id="statusText">No respondiste</strong></p>
-      <p class="mt-2 text-xs text-slate-500">Este demo usa <code>localStorage</code> para evitar duplicados en el mismo navegador y muestra cómo integrarlo con un backend real para idempotencia y reportes semanales.</p>
     </section>
   </main>
 
+
+
   <script>
-    /* ---------- CONFIG (Reemplazar en producción) ---------- */
-    const CONFIG = {
-      BOT_WHATSAPP_NUMBER: '5212345678900', // formato internacional sin + (ejemplo: 521234...)
-      HOST_PHONE_FOR_REPORTS: '5210987654321', // número de la anfitriona (para notificaciones), si se usa API
-      API_BASE: '/api', // endpoint servidor para confirmaciones definitivas
-      WEEKLY_REPORT_SUBSCRIBE_ENDPOINT: '/api/subscribe-weekly-report'
-    };
+    const CONFIG = { API_BASE: '/api' };
 
-    /* ---------- UTIL: lectura de parámetros URL para personalizar invitado ---------- */
-    function getQueryParams() {
-      const p = {};
-      location.search.replace(/^[?]/,'').split('&').forEach(pair => {
-        if(!pair) return;
-        const [k,v] = pair.split('=').map(decodeURIComponent);
-        p[k] = v;
-      });
-      return p;
+    function setStatus(text) {
+      document.getElementById('statusText').textContent = text;
     }
 
-    const params = getQueryParams();
-    const guestName = params.guest || params.nombre || 'Invitado';
-    const token = params.token || null; // token único para identificar al usuario (recomendado)
-
-    // Rellenar UI
-    document.getElementById('guestNameSpan').textContent = guestName;
-
-    // Maps: aceptar lat/lng o dirección
-    const maps = params.maps || 'Virgen de las Virtudes Pte., La Guadalupana, 55060 Ecatepec de Morelos, Méx.';
-    document.getElementById('mapsLink').href = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(maps)}`;
-
-    /* ---------- Control de estado local para evitar duplicados en este navegador ---------- */
-    const storageKey = `invite_confirm_${token||guestName}`;
-    function loadLocalState(){
-      try { return JSON.parse(localStorage.getItem(storageKey)) || {status:'none',attendees:0}; } catch(e){return {status:'none',attendees:0};}
-    }
-    function saveLocalState(s){ localStorage.setItem(storageKey, JSON.stringify(s)); }
-
-    const state = loadLocalState();
-    const statusText = document.getElementById('statusText');
-    function refreshStatus(){
-      if(state.status==='confirmed') statusText.textContent = `Confirmado — ${state.attendees} persona(s)`;
-      else if(state.status==='declined') statusText.textContent = 'Declinaste la invitación';
-      else statusText.textContent = 'No respondiste';
-    }
-    refreshStatus();
-
-    /* ---------- Botones y comportamientos ---------- */
     const confirmBtn = document.getElementById('confirmBtn');
     const declineBtn = document.getElementById('declineBtn');
-    const confirmPanel = document.getElementById('confirmPanel');
-    const declinePanel = document.getElementById('declinePanel');
-    const attendeesInput = document.getElementById('attendeesInput');
-    const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
-    const confirmLocalBtn = document.getElementById('confirmLocalBtn');
-    const sendDeclineWhatsappBtn = document.getElementById('sendDeclineWhatsappBtn');
-    const declineLocalBtn = document.getElementById('declineLocalBtn');
 
-    confirmBtn.addEventListener('click', ()=>{
-      confirmPanel.classList.toggle('hidden');
-      declinePanel.classList.add('hidden');
-    });
-    declineBtn.addEventListener('click', ()=>{
-      declinePanel.classList.toggle('hidden');
-      confirmPanel.classList.add('hidden');
-    });
+    // ✅ Confirmar asistencia
+    confirmBtn.addEventListener('click', async () => {
+      const nombre = document.getElementById('nombreInput').value.trim();
+      const personas = parseInt(document.getElementById('personasInput').value) || 1;
 
-    /* Enviar pre-mensaje a WhatsApp (abre chat en web/cliente con mensaje prellenado) */
-    function makeWhatsAppUrl(number, text){
-      const base = `https://wa.me/${number}`;
-      return `${base}?text=${encodeURIComponent(text)}`;
-    }
+      if (!nombre) return alert("Por favor, ingresa tu nombre.");
 
-    sendWhatsappBtn.addEventListener('click', ()=>{
-      const attendees = Math.max(1, parseInt(attendeesInput.value||1));
-      // Mensaje estructurado que el bot debería saber interpretar
-      const msg = `CONFIRMACION|guest:${guestName}|token:${token||'none'}|attendees:${attendees}|event:[EVENT_ID]`;
-      const url = makeWhatsAppUrl(CONFIG.BOT_WHATSAPP_NUMBER, msg);
-      // Abrir WhatsApp (el usuario debe enviar el mensaje). En producción se recomienda un backend que use la API para enviar/recibir.
-      window.open(url, '_blank');
-      // Guardar pre-estado localmente (evitar re-envíos desde mismo navegador)
-      state.status = 'pending_whatsapp'; state.attendees = attendees; saveLocalState(state); refreshStatus();
-    });
-
-    /* Confirmar localmente (usado como respaldo si no se completa por WhatsApp) */
-    confirmLocalBtn.addEventListener('click', async ()=>{
-      const attendees = Math.max(1, parseInt(attendeesInput.value||1));
-      // Actualización local inmediata
-      state.status = 'confirmed'; state.attendees = attendees; saveLocalState(state); refreshStatus();
-
-      // Intentar notificar al backend (si existe)
-      try{
-        await fetch(CONFIG.API_BASE+"/confirm",{
-          method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({guest:guestName, token, attendees, source:'web'})
+      try {
+        const res = await fetch(`${CONFIG.API_BASE}/confirmar`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, personas })
         });
-      }catch(e){ console.warn('No se pudo notificar al backend:',e); }
-
-      alert('Gracias — tu confirmación quedó registrada (local). En producción el robot de WhatsApp también la procesará.');
+        const data = await res.json();
+        alert(data.mensaje || 'Confirmación enviada.');
+        setStatus(`Confirmado — ${personas} persona(s)`);
+      } catch (err) {
+        console.error(err);
+        alert('Error al enviar confirmación.');
+      }
     });
 
-    /* Declinar: enviar WhatsApp o guardar local */
-    sendDeclineWhatsappBtn.addEventListener('click', ()=>{
-      const msg = `DECLINO|guest:${guestName}|token:${token||'none'}|event:[EVENT_ID]`;
-      window.open(makeWhatsAppUrl(CONFIG.BOT_WHATSAPP_NUMBER, msg), '_blank');
-      state.status = 'declined'; state.attendees = 0; saveLocalState(state); refreshStatus();
+    // ❌ No podré asistir
+    declineBtn.addEventListener('click', async () => {
+      const nombre = document.getElementById('nombreInput').value.trim();
+      if (!nombre) return alert("Por favor, ingresa tu nombre.");
+
+      try {
+        const res = await fetch(`${CONFIG.API_BASE}/no-asistire`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre })
+        });
+        const data = await res.json();
+        alert(data.mensaje || 'Notificación enviada.');
+        setStatus('No podrá asistir');
+      } catch (err) {
+        console.error(err);
+        alert('Error al enviar notificación.');
+      }
     });
-    declineLocalBtn.addEventListener('click', async ()=>{
-      state.status = 'declined'; state.attendees = 0; saveLocalState(state); refreshStatus();
-      try{
-        await fetch(CONFIG.API_BASE+"/decline",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({guest:guestName, token, source:'web'})});
-      }catch(e){}
-      alert('Se registró tu declinación (local).');
-    });
-
-    /* ---------- Suscripción al reporte semanal (opcional) ---------- */
-    // Si el enlace token está presente, podemos (desde frontend) pedir suscripción al reporte semanal para la anfitriona.
-    async function subscribeWeeklyReport(){
-      try{
-        await fetch(CONFIG.WEEKLY_REPORT_SUBSCRIBE_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({eventId:'[EVENT_ID]', hostPhone:CONFIG.HOST_PHONE_FOR_REPORTS})});
-      }catch(e){/* no crítico */}
-    }
-    // subscribeWeeklyReport(); // descomentar si ya tienes backend
-
-    /* ---------- Advertencias y notas de seguridad / integridad ---------- */
-    /*
-      IMPORTANTE: este prototipo incorpora medidas CLIENT-SIDE (localStorage + token en URL) para evitar
-      que la misma persona confirme varias veces desde el MISMO dispositivo/ navegador. Esto NO evita
-      fraude si alguien confirma desde distintos dispositivos o intenta manipular el conteo.
-
-      Recomendación de producción (resumen):
-        1) Generar un token único por invitado y tramar URLs personalizadas: ?token=abc123&guest=Nombre
-        2) Implementar un backend (Node.js / Express) con base de datos (Postgres, MySQL o Firestore)
-           que registre cada confirmación con marca de tiempo y token.
-        3) Cuando el BOT de WhatsApp reciba un mensaje, validar el token contra la base de datos y
-           solo aceptar la confirmación si el token no ha sido usada o si la nueva confirmación es una
-           actualización legítima (ej. reducir asistentes) según reglas de negocio.
-        4) Emplear idempotencia: confirmar por token — si ya existe, actualizar en lugar de sumar doble.
-        5) Para enviar mensajes automáticos (bot), usar Twilio API o la API oficial de WhatsApp Business
-           en el backend para no depender de que el usuario pulse enviar en su app.
-        6) Generar reportes semanales con un cron job (ej. cron en Node, Google Cloud Scheduler, o AWS CloudWatch Events)
-           que compile conteos y envíe a la anfitriona (WhatsApp/Email).
-    */
-
   </script>
+
 </body>
+
 </html>
