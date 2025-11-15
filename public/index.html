@@ -673,11 +673,6 @@
     </script>
     <script>
       const CONFIG = { API_BASE: '/api' };
-
-      function setStatus(text) {
-        document.getElementById('statusText').textContent = text;
-      }
-
       const confirmBtn = document.getElementById('confirmBtn');
       const declineBtn = document.getElementById('declineBtn');
 
@@ -696,7 +691,7 @@
           });
           const data = await res.json();
           alert(data.mensaje || 'Confirmación enviada.');
-          setStatus(`Confirmado — ${personas} persona(s)`);
+          // ❌ Eliminado: setStatus()
         } catch (err) {
           console.error(err);
           alert('Error al enviar confirmación.');
@@ -716,7 +711,7 @@
           });
           const data = await res.json();
           alert(data.mensaje || 'Notificación enviada.');
-          setStatus('No podrá asistir');
+          // ❌ Eliminado: setStatus()
         } catch (err) {
           console.error(err);
           alert('Error al enviar notificación.');
