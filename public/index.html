@@ -1,17 +1,133 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="utf-8" />
+ <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Invitación — SAME</title>
   <!-- Tailwind CDN (rápido para prototipo) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="./dist/output.css">
+    <style>
+        /* Estilos adicionales para scroll suave, transiciones y tema sutil */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #fef3c7 100%); /* Gradiente sutil */
+        }
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            transition: opacity 0.5s ease;
+        }
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            border-bottom: 2px solid #dc2626;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            color: #dc2626;
+            animation: fall 3s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateX(-50%) translateY(-10px); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(100vh); opacity: 0; }
+        }
+        .btn-nav {
+            background: linear-gradient(45deg, #dc2626, #16a34a);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-nav:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.5);
+        }
+        .btn-nav::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+        }
+        .btn-nav:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        .star {
+            position: absolute;
+            font-size: 1.5rem;
+            color: #ffd700;
+            animation: sparkle 1s ease-out forwards;
+            pointer-events: none;
+        }
+        @keyframes sparkle {
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0) rotate(360deg); }
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 4xl;
+            transition: all 0.5s ease;
+        }
+        .video-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 20;
+            background: black;
+        }
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .play-btn:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
 
-  <style>
-    /* Pequeñas mejoras visuales */
+            /* Pequeñas mejoras visuales */
     body {
       background: linear-gradient(180deg, #f8fafc, #ffffff);
     }
@@ -171,162 +287,200 @@
       opacity: 1;
     }
 
-  </style>
+    @keyframes float {
+    0%, 100% { transform: translateY(0px) translateX(-50%); }
+    50% { transform: translateY(-10px) translateX(-50%); } /* Sube 10px en el medio */
+}
+.float-hover {
+    transition: transform 0.3s ease; /* Transición suave */
+}
+.float-hover:hover {
+    animation: float 2s ease-in-out infinite; /* Flota cada 2 segundos en hover */
+}
+
+    </style>
 </head>
 
+
+  
+
 <body class=" bg-gradient-to-b from-[#0d2755] to-black  flex items-center justify-center p-0 m-0">
-  <div class="sticker-bg"></div>
+    <!-- Header fijo con mensaje estático (más profesional) -->
+     <div class="sticker-bg"></div>
 
   <main class="h-full w-full   rounded-none shadow-inner overflow-auto card ">
-    <!-- Header: logo y título -->
-    <!-- Encabezado decorativo -->
-    <header class="relative mb-12 overflow-hidden flex justify-center items-center">
 
+
+
+
+    <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño" class="absolute top-6 right-10 w-24 drop-shadow-lg float">
+    <header class="header-fixed">
+        <div class="text-center py-4 relative">
+            <div class="snowflake">❄</div>
+            <h1 class="text-4xl font-bold text-red-600" style="font-family: 'Great Vibes', cursive;">Felices Fiestas</h1>
+            <p class="text-sm text-gray-700">Explora cada sección presionando "Siguiente" para continuar.</p>
+        </div>
     </header>
 
-
-    <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño"
-      class="absolute top-6 right-10 w-24 drop-shadow-lg float"><!-- Area de video -->
-    <section class="mb-6">
-      <!-- Video para web -->
-      <div class=" bg-black overflow-hidden relative ">
-        <video id="videoDesktop" class="w-full h-full object-cover" autoplay="" playsinline="" preload="auto"
-          controls="">
-          <source src="videoweb.mp4" type="video/mp4">
-          Tu navegador no soporta la etiqueta <code>video</code>.
-        </video>
-      </div>
-
-      <script>
-        const videoDesktop = document.getElementById('videoDesktop');
-        videoDesktop.addEventListener('click', () => {
-          if (videoDesktop.paused) {
-            videoDesktop.play();
-          }
-        });
-      </script>
+    <!-- Sección 1: Introducción -->
+    <section id="section1" class="section bg-white/80 mt-20">
+        <div class="text-center max-w-2xl">
+            <h2 class="text-3xl font-semibold text-green-700 mb-4">Hola</h2>
+            <p class="text-lg text-gray-700 mb-6">Para una experiencia óptima, gira tu dispositivo si es necesario y presiona el botón para deslizar a la siguiente parte.</p>
+            <button onclick="scrollToSection('section2')" class="btn-nav">Siguiente</button>
+        </div>
     </section>
+
+    <!-- Sección 2: Video con botón para play y expansión -->
+
+
+
+
+<!-- Sección 2: Video con botón para play y expansión -->
+<section id="section2" class="section bg-green-50/80">
+    <div class="w-full max-w-4xl text-center">
+        <h2 class="text-3xl font-semibold text-red-600 mb-6">Video Especial</h2>
+        <div class="video-container" id="videoContainer">
+            <video id="mainVideo" class="w-full rounded-lg shadow-lg border-4 border-green-300">
+                <source src="videoweb.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento video.
+            </video>
+            <button id="playBtn" class="play-btn" style="display: block;">▶</button>
+        </div>
+        <p class="text-center mt-4 text-gray-600">Presiona el botón para iniciar el video con sonido y verlo en pantalla completa.</p>
+        <button onclick="scrollToSection('section3')" class="btn-nav mt-6">Siguiente</button>
+    </div>
+</section>
+
+
+    <!-- Sección 3: Confirmaciones y botones -->
+    <section id="section3" class="section bg-red-50/80" style="background-image: url('/img.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        
 
     <!-- Sección principal de invitación -->
-    <section class="relative w-full h-72 mb-6 p-6 overflow-hidden flex justify-center items-center">
+   <section class="relative w-full h-72 mb-6 p-6 overflow-hidden flex justify-center items-center">
       <!-- Imágenes decorativas flotantes -->
-      <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño"
-        class="absolute top-6 left-10 w-24 drop-shadow-lg float">
+      <img src="https://img.icons8.com/fluency/48/snow-storm.png" alt="Adorno navideño" class="absolute top-6 left-10 w-24 drop-shadow-lg float">
 
-      <img src="https://img.icons8.com/fluency/96/sparkling.png" alt="Regalo navideño"
-        class="absolute top-10 right-12 w-28 opacity-90 float">
+      <img src="https://img.icons8.com/fluency/96/sparkling.png" alt="Regalo navideño" class="absolute top-1 right-12 w-28 opacity-90 float">
 
-      <img src="https://img.icons8.com/fluency/48/christmas-candle.png" alt="Bastón dulce"
-        class="absolute bottom-8 left-20 w-20 opacity-80 float">
+      
 
-      <img src="https://img.icons8.com/fluency/96/christmas-ball.png" alt="Campana"
-        class="absolute top-16 left-1/2 w-12 -translate-x-1/2 float">
+      <img src="https://img.icons8.com/fluency/96/christmas-ball.png" alt="Campana" class="absolute top-25 left-1/2 w-18 -translate-x-1/2 float-hover">
 
-      <img src="https://img.icons8.com/fluency/96/candy-cane--v1.png" alt="Copo de nieve"
-        class="absolute bottom-10 right-20 w-20 float">
+      
 
       <!-- Texto o logo central -->
-      <div class="relative z-10 text-center">
-        <h1 class="text-4xl font-bold text-red-700 drop-shadow-sm">✨ Invitación Especial ✨</h1>
-        <p class="text-green-700 mt-2 text-lg">Acompáñanos a celebrar esta Navidad</p>
-        <p class="text-white mt-2 text-lg">Se requiere vestimenta formal para todos los asistentes.</p>
-      </div>
+          
+            
+         
+        
+          <!-- Carta de invitación navideña -->
+
     </section>
+                <div class="invitation-card w-full max-w-3xl mx-auto mb-8 text-center text-2xl" style="font-family: 'Great Vibes', cursive;">
+                <div class="decoration">❄</div>
+                <div class="text-center mb-6">
+                    <p class="text-3xl font-semibold text-red-600 italic">Se complace en invitarlos a</p>
+                    <h3 class="text-4xl font-bold text-green-700 mt-2">nuestra Comida de Navidad anual.</h3>
+                </div>
+                <div class="text-left leading-relaxed text-gray-800">
+
+                    
+                    
+                    
+                </div>
+            <p class="mb-4">
+                        A medida que se acerca la temporada navideña, queremos tomarnos un momento para agradecer el esfuerzo y la dedicación de cada uno de ustedes a lo largo del año. Más que colegas, somos una gran familia, y qué mejor manera de celebrar nuestros logros que compartiendo juntos un momento de alegría y confraternidad.
+                    </p><p class="mb-4">
+                        Tenemos el inmenso placer de invitarte a nuestra tradicional Comida de Navidad, un espacio pensado para relajarnos, disfrutar de buena compañía y recargar energías para los retos del próximo año.
+                    </p><p class="text-center italic text-gray-600 mt-6">
+                        Con afecto,</p></div>
 
 
-    <!--botonwhatsapp-->
+
+    <p class="text-center font-extrabold text-4xl text-gray-600 mt-6">
+                        SAME
+    
+                    </p><br><!--botonwhatsapp-->
     <!-- Formulario -->
     <section class="mb-4">
-      <h3 class="font-semibold mb-3 text-lg text-center text-white">Confirma tu asistencia</h3>
+      <h3 class="font-semibold mb-3 text-lg text-center bg-[#5e2128] text-white">Confirma tu asistencia</h3>
       <div class="flex flex-col gap-3 items-center">
-        <input id="nombreInput" type="text" placeholder="Tu nombre" class="w-72 p-2 border rounded text-center"
-          required>
-        <input id="personasInput" type="number" min="1" class="w-72 p-2 border rounded text-center"
-          placeholder="Número de personas">
+        <input id="nombreInput" type="text" placeholder="Tu nombre" class="w-72 p-2 border rounded text-center" required="" wfd-id="id0">
+        <input id="personasInput" type="number" min="1" class="w-72 p-2 border rounded text-center" placeholder="Número de personas" wfd-id="id1">
 
         <div class="flex gap-3 w-full px-4">
 
-          <button id="confirmBtn"
-            class="magic-btn w-1/2  bg-green-600 text-white border-green-400 hover:bg-transparent hover:text-green-300 transition">
+          <button id="confirmBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4 transition btn-nav">
 
             ✅ Confirmar asistencia
 
             <!-- ⭐ Estrellas -->
             <div class="star star-1">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-2">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-3">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-4">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-5">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
           </button>
 
 
-          <button id="declineBtn"
-            class="magic-btn w-1/2  bg-red-600 text-white border-red-400 hover:bg-transparent hover:text-red-300 transition">
+          <button id="declineBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4 transition btn-nav">
 
             ❌ No podré asistir
 
             <!-- ⭐ Estrellas -->
             <div class="star star-1">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-2">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-3">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-4">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
             <div class="star star-5">
               <svg viewBox="0 0 191.1 191.1">
-                <path class="fil0"
-                  d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z" />
+                <path class="fil0" d="M95.5 0c6.4 32.4 14.9 44.2 47.2 47.2 3 .3 5.4 2.8 5.7 5.7 3 32.3 14.7 40.8 47.1 47.2 3 .6 5.1 3.2 5.1 6.2s-2.1 5.6-5.1 6.2c-32.4 6.4-44.1 14.9-47.1 47.2-.3 3-2.8 5.4-5.7 5.7-32.3 3-40.8 14.7-47.2 47.1-.6 3-3.2 5.1-6.2 5.1s-5.6-2.1-6.2-5.1c-6.4-32.4-14.9-44.1-47.2-47.1-3-.3-5.4-2.8-5.7-5.7-3-32.3-14.7-40.8-47.1-47.2-3-.6-5.1-3.2-5.1-6.2s2.1-5.6 5.1-6.2c32.4-6.4 44.1-14.9 47.1-47.2.3-3 2.8-5.4 5.7-5.7 32.3-3 40.8-14.8 47.2-47.2C83.8 2.1 86.4 0 89.4 0h.2c3 0 5.6 2.1 5.9 5.5z"></path>
               </svg>
             </div>
 
@@ -343,18 +497,14 @@
 
       <!-- Mapa embebido: Virgen de las Virtudes, La Guadalupana, Ecatepec -->
       <div class="w-full h-64 mb-3 rounded-lg overflow-hidden shadow-sm">
-        <iframe
-          src="https://www.google.com/maps?q=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x.&output=embed"
-          width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade">
+        <iframe src="https://www.google.com/maps?q=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x.&amp;output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
         </iframe>
       </div>
 
       <!-- Enlace a Google Maps -->
       <p class="text-sm text-slate-700">
         ¿Quieres ver la ubicación completa en Maps?
-        <a href="https://www.google.com/maps/search/?api=1&query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x."
-          target="_blank" class="text-sky-600 font-medium hover:underline">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x." target="_blank" class="text-sky-600 font-medium hover:underline">
           Abrir en Maps
         </a>
       </p>
@@ -362,20 +512,61 @@
 
     <section class="mb-4 p-6">
       <h3 class="font-medium">Ubicación</h3>
-      <p class="text-sm text-slate-600">Dirección: <a id="mapsLink"
-          href="https://www.google.com/maps/search/?api=1&amp;query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x."
-          target="_blank" class="text-sky-600 boton-ubicacion underline">Abrir en Maps</a></p>
+      <p class="text-sm text-slate-600">Dirección: <a id="mapsLink" href="https://www.google.com/maps/search/?api=1&amp;query=Virgen%20de%20las%20Virtudes%20Pte.%2C%20La%20Guadalupana%2C%2055060%20Ecatepec%20de%20Morelos%2C%20M%C3%A9x." target="_blank" class="text-sky-600 boton-ubicacion underline">Abrir en Maps</a></p>
     </section>
 
-    <!-- Estado -->
-    <section class="text-sm text-slate-700 border-t pt-3 text-center">
-      <p>Estado de tu respuesta: <strong id="statusText">No respondiste</strong></p>
     </section>
-  </main>
 
+    <script>
+        // Función para deslizar suavemente a la siguiente sección
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
 
+        // Script para el video: play y expansión a fullscreen
+        const playBtn = document.getElementById('playBtn');
+        const video = document.getElementById('mainVideo');
+        const videoContainer = document.getElementById('videoContainer');
 
-  <script>
+        playBtn.addEventListener('click', function() {
+            video.play();
+            videoContainer.classList.add('video-fullscreen');
+            playBtn.style.display = 'none';
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) {
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) {
+                video.msRequestFullscreen();
+            }
+        });
+
+        document.addEventListener('fullscreenchange', function() {
+            if (!document.fullscreenElement) {
+                videoContainer.classList.remove('video-fullscreen');
+                playBtn.style.display = 'block';
+            }
+        });
+
+        // Función para crear estrellas en botones al hacer clic
+        function createStars(button) {
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '⭐';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                button.appendChild(star);
+                setTimeout(() => star.remove(), 1000);
+            }
+        }
+
+        document.getElementById('confirmBtn').addEventListener('click', function() {
+            createStars(this);
+        });
+    </script>
+      <script>
     const CONFIG = { API_BASE: '/api' };
 
     function setStatus(text) {
@@ -428,6 +619,9 @@
     });
   </script>
 
-</body>
 
+
+</main>
+
+</body>
 </html>
